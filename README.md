@@ -8,42 +8,29 @@ Instructions to run the project:
 1)  Clone this repository on your local machine.
 2)  Add your input text file to the folder (the graph in your input file should have the format same as the one in "Graph.txt")
 3)  Specify the name of your input file in the file "main.py" on line 7.
-4)  Set the number of iterations you wish to run in file "main.py" on line 11.
-5)  If you wish to print the debug messages, set the value of 'debug' to 'True' on line 6 in file "main.py" 
+5)  If you wish to print the debug messages, set the value of 'debug' to 'True' on line 8 in file "main.py" 
 6)  Run the file "main.py".
-7)  Check the file "minCutOutput.txt" for the output.
+7)  Check the file "SCCs.txt" for the output.
 
 Vertex.py:
 This file defines the "Vertex" class.
-Every vertex has an "id" and a set "edgeSet" that stores all the "ids" of all the edges incident to that vertex.
-
-Edge.py:
-This file defines the "Edge" class.
-Every edge has an "id" and two end vertices named "v1" and "v2".
+Every vertex has an "id", a "leader" to indicate the SCC it belongs and a list "adjList" that stores the "ids" of all the vertices adjacent to that vertex.
 
 Graph.py:
 This file defines the "Graph" class.
-The graph has two dictonaries named "vertexDict" and "edgeDict".
-"vertexDict" stores all the "Vertex" instances with their respective "ids" as keys.
-"edgeDict" stores all the "Edge" instances with their respective "ids" as keys.
-The method "karger" computes the min-cut.
+The graph has a dictonary named "graph" which stores all the "Vertex" instances with their respective "ids" as keys.
 
-kargerMinCut.py:
-This is the file that creates the "Graph" instance by passing the input file.
-Here we call the "karger" method from the graph instance.
-The Karger's algorithm does not gurrantee to give the correct result in a single iteration.
-Thus we run multiple iterations of the algorithm and choose the result that gives minimum number of edges in the min-cut.
+SCC.py
+This file defines the SCC object.
+An SCC has a leader vertex named "leader_id", a list of slave vertices named "slavesList" and a counter to maintain the number of vertices in that SCC, named "vertexCount".
+
+dfs.py:
+This file defines the different DFS functions to be run on the original and the reverse graphs.
+
+main.py:
+This is the file that creates the original and reverse "Graph" instances by passing the input file.
+Here we call the "dfsLoop1" and "dfsLoop2" methods on the original and reverse graph instances respectively.
 
 Time Complexity Analysis:
-Whenevere we contract an edge, we are changing the end vertex for all incident edges of one of the vertices (the vertex that gets deleted) of the contracted edge.
-We repeat this process n-2 times, where n=|V|. Thus total number of operations performed is proportional to the sum of the degrees of those n-2 vertices.
-Sum of the degrees of all vertices is twice the number of edges.
-Time comlplexity for one iteration: O(m) where m=|E|
-Overall time complexity for N iterations: O(N x m) where N=number of iterations performed.
-
-
-# Strongly Connected Components
-Compute the strongly connected components of a given directed graph using Kosaraju's 2 pass algorithm. (Stack Implementation)
-
-Different test cases are provided.
-To run the code on the actual dataset, unzip the file SCC.zip and pass it as input.
+The total time required by this algorithm is the time required to run 2 DFS loops.
+Total time required = O(|E|+|V|)
