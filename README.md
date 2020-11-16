@@ -1,6 +1,7 @@
 # Strongly connected components
 In this project we find the Strongly Connected Components in a directed social network graph using the "Kosaraju's two-pass algorithm".
-The edges of the graph are provided in a text file named "Graph.txt". On every line the first vertex is the start vertex and the second vertex is the end vertex of that edge.
+Unzip the file "Graph.zip".
+The edges of the graph are provided in the text file named "Graph.txt". On every line the first vertex is the start vertex and the second vertex is the end vertex of that edge.
 Test cases of small graphs are also provided.
 An output file named "SCC.txt" is generated that has all the Strongly connected compenents.
 
