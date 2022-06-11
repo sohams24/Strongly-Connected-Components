@@ -22,7 +22,7 @@ for scc in SCCs:
         if i == scc.getSCCLength()-1:
             f.write("]\n")
         else:
-            f.write("\t")
+            f.write(", ")
     f.write("No of vertices: {}\n\n\n".format(scc.getSCCLength()))
 f.close()
 print("Check the file 'SCCs.txt' for the strongly connected compenents ")
